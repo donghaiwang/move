@@ -482,4 +482,184 @@ IMU 通常包含用于测量线性加速度的加速度计、用于测量角速�
 \end{equation}
 
 
+方程~\ref{eq:7_6}、\ref{eq:7_8}~和~\ref{eq:7_9}~中的矩阵被称为初等旋转矩阵，因为在每种情况下，固定于物体的坐标轴之一保持静止。
+完整的旋转变换 $^{lab}R_\text{body}$ 由这 3 个初等旋转矩阵按规定顺序的乘积给出：
+%
+\begin{equation}
+	\begin{aligned}
+		^\text{lab} R_\text{body} & = 
+			^\text{lab} R_\text{f1}
+			^\text{f1} R_\text{f2}
+			^\text{f2} R_\text{body} \\
+		& = \begin{bmatrix}
+			cos \theta cos \psi & 
+			sin \phi sin \theta cos \psi - cos \phi sin \psi &
+			cos \phi sin \theta cos \psi + sin \phi sin \psi \\
+			% 
+			cos \theta sin \psi &
+			sin \phi sin \theta sin \psi + cos \phi cos \psi &
+			cos \phi sin \theta sin \psi - sin \phi cos \psi \\
+			%
+			- sin \theta &  sin \phi cos \theta &  \cos \phi cos \theta
+		\end{bmatrix} \\
+		%
+		& = \begin{bmatrix}
+			r_{11}  & r_{12}  & r_{13} \\
+			r_{21}  & r_{22}  & r_{23} \\
+			r_{31}  & r_{32}  & r_{33}
+		\end{bmatrix}
+	\end{aligned}
+	\label{eq:7_10}
+\end{equation}
+%
+其中，每个元素 $r_{ij}$ 都是介于 0 和 1 之间的数字。
+我们可以通过将任意旋转矩阵的元素设置为公式~\ref{eq:7_10}~中相应的三角表达式，从而根据该旋转矩阵的数值元素计算出角度 $\psi$、$\theta$ 和 $\phi$。
+只有对三个角度施加限制，才能获得唯一解；一种策略是使用四象限（2 个参数）反正切函数 (atan2)，如下所示：
+%
+\begin{equation}
+	\begin{aligned}
+		\phi & = atan2(r_{32}, r_{33}) \\
+		\theta & = atan2(-r_{31}, \sqrt{r_{11}^2} + r_{21}^2) \\
+		\psi & = atan2(r_{21}, r_{11})
+	\end{aligned}
+	\label{eq:7_11}
+\end{equation}
+
+
+注意，我们可以通过将数值项 $r_{ij}$ 与不同的符号旋转矩阵关联起来，计算出不同旋转序列（例如，先绕 X 轴旋转，再绕 Y′ 轴旋转，最后绕 Z″ 轴旋转）对应的角度。
+我们只需计算公式~\ref{eq:7_10}~中一组不同的基本旋转矩阵的乘积即可。
+
+
+在前面的讨论中，我们假设所有参考系都共享一个原点，因此仅通过旋转变换即可关联。
+然而，附着在不同身体部位（例如大腿和小腿）的参考系通常具有不同的原点，因此它们不仅通过旋转关联，还通过平移关联。
+通常，从参考系 B 中的坐标到参考系 A 中的坐标的变换是通过旋转 $^AR_B$ 和平移的组合来完成的：
+%
+\begin{equation}
+	p_A = ^A R_B p_B + p_A^{A_0 B_0}
+	\label{eq:7_12}
+\end{equation}
+%
+其中 $p_A ^{A_o B_o}$ 是从 A 坐标系的原点 ($A_o$) 到 B 坐标系的原点 ($B_o$) 的位置向量，以 A 坐标系表示。
+（注意，当 A 坐标系和 B 坐标系的原点重合时，公式~\ref{eq:7_12}~简化为公式~\ref{eq:7_1}。）
+这种变换将旋转和平移结合在一起，可以方便地用一个 $4 \times 4$ 变换矩阵来表示，该矩阵可以捕捉 2 个坐标系之间的相对位置和方向：
+% 5x5
+\begin{equation}
+	^A T_B = 
+	\begin{bmatrix}
+		& & & | & \\
+		& ^A R_B & & | & p_A ^{A_0 B_0} \\
+		& & & | & \\
+		--& -- & -- & | & -- \\
+		0 & 0 & 0 & | & 1
+	\end{bmatrix}
+	\label{eq:5_13}
+\end{equation}
+
+
+因此，在框架 B 中表达的点可以使用变换矩阵在框架 A 中表示如下：
+%
+\begin{equation}
+	\begin{bmatrix}
+		p_A \\
+		1
+	\end{bmatrix}
+	=
+	^A T_B
+	\begin{bmatrix}
+		p_B \\
+		1
+	\end{bmatrix}
+	\label{eq:7_14}
+\end{equation}
+
+公式~\ref{eq:7_14}~有效地在公式~\ref{eq:7_12}~的右侧包含了偏移向量，同时保留了使用单个矩阵 ($^AT_B$) 关联两个帧的符号便利性。
+
+
+
+最后，对于那些对数学特别感兴趣的读者，我们需要指出，用旋转矩阵（例如公式~\ref{eq:7_10}）表示旋转并非总是最佳选择。
+这种方法存在一个称为“万向节锁”的缺陷：当两个或多个旋转轴对齐时，无法表示某些旋转。
+例如，如果图 7.12 中的俯仰 $\theta = −90$ 度，则 Z = X″，改变角度 $\psi$ 和 $\phi$ 对飞机的影响相同。
+在坐标系运动范围有限的应用中，可以避免万向节锁。
+但是，例如，如果你正在编写一个飞行模拟器，并且你希望用户能够流畅地翻筋斗，那么变换矩阵可能不是一个好的选择。
+另一种表示方法称为四元数，可以避免万向节锁，但代价是使用更深奥的数学。
+
+
+\section{利用无约束逆运动学计算关节角度}
+
+变换矩阵的一大优势在于它简化了多个坐标系之间的导航。
+具体来说，它使我们能够根据实验室框架中收集的数据，轻松计算出解剖关节角度。
+回想一下，动捕系统记录的是安装在皮肤上的标记点相对于实验室中固定的参考框架的位置（图~\ref{fig:7_13}）。
+例如，为了计算膝关节屈曲角度，我们可以确定与固定在股骨和胫骨上的参考框架相关的变换矩阵：
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=1.0\linewidth]{chap7/7_13}
+	\caption{任意两个参考系的相对位置和方向可以用 4$\times$4 变换矩阵 T 来描述，这有助于根据相对于全局参考系测量的标记位置来计算关节角度。 \label{fig:7_13}}
+\end{figure}
+
+\begin{equation}
+	^\text{femur} T_\text{tibia} = 
+		^\text{femur} T_\text{thigh}
+		^\text{thigh} T_\text{lab}
+		^\text{lab} T_\text{shank}
+		^\text{shank} T_\text{tibia}
+	\label{eq:7_15}
+\end{equation}
+
+
+从右到左阅读此公式描述了胫骨框架中的坐标与股骨框架中的坐标之间的关系。
+
+
+假设没有骨骼变形也没有软组织运动，大腿和小腿跟踪参考框架可以通过恒定变换分别与股骨和胫骨解剖框架相关联。
+这些变换矩阵（$^\text{thigh}T_{femur}$ 和 $^\text{shank}T_\text{tibia}$）可以通过在“静态校准试验”期间关联跟踪和解剖参考框架来获得，其中两组标记都连接到受试者并在站立期间收集数据。
+变换 $^\text{lab}T_\text{thigh}$ 和 $^\text{lab}T_\text{shank}$ 是通过根据运动试验每个时刻由动作捕捉系统记录的标记位置计算大腿和小腿参考框架获得的。
+然后可以使用公式~\ref{eq:7_10}~从 $^\text{femur}T_\text{tibia}$ 变换矩阵中提取膝关节屈曲角度。
+如果股骨和胫骨框架具有平行的 Z 轴，则可以使用更简单的公式~\ref{eq:7_6}，如图~\ref{fig:7_11}~所示。
+
+
+无约束逆运动学方法因其易于实现且在许多商业软件包中可用而广受欢迎。
+然而，这种方法有一个主要局限性：它没有考虑解剖学施加的约束。
+因此，模型的身体节段可能会改变长度，其关节可能会在运动过程中脱位，并且算法对软组织运动敏感。
+无约束逆运动学模型会产生误差，影响计算出的关节角度以及所有后续计算（例如关节力矩和肌肉力）。
+我更倾向于使用另一种方法，下文将对此进行介绍。
+
+
+
+\text{约束逆运动学}
+
+约束逆运动学方法利用优化方法，最小化固定在受试者身上的实验标记点位置与固定在受试者骨骼运动模型上的相应标记点位置之间的距离（图~\ref{fig:7_14}）。
+该模型由刚体构成，这些刚体通过解剖学上精确的关节相互连接，这些关节只允许进行可靠测量的运动。
+模型会进行缩放以匹配受试者的尺寸。
+与无约束逆运动学方法相比，使用结合了受试者几何形状和活动性知识的模型可以更精确地估计关节角度。
+此类模型中的约束将可能的解集限制为那些代表解剖学上可行运动的解。
+例如，骨骼的长度不能随时间变化，关节也不能脱位或超出定义的解剖极限。
+以下目标函数在每个时间点上针对模型的广义坐标（例如，其在空间中的位置和每个关节的角度）进行最小化：
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{chap7/7_14}
+	\caption{如果解决方案受到底层骨架模型的约束，则逆运动学算法可以产生更准确的关节角度估计，其中放置在模型上的标记（橙色）跟踪放置在主体上的标记的轨迹（蓝色）。 \label{fig:7_14}}
+\end{figure}
+
+
+\begin{equation}
+	J(\underline{q}) = 
+		\sum_{k \in \text{Markders}} 
+		w_k
+		\Vert \underline{k}^\text{exp} - \underline{k}_k (\underline{q}) \Vert
+	\label{eq:7_16}
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+
 
