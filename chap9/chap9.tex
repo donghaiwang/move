@@ -361,8 +361,69 @@
 	
 \end{proposition}
 
+该优化问题的解决方案是估计模型中每个肌肉在某一时间点产生的力量：
+
+\begin{table}[htbp]
+	\label{tab:9_1} \centering
+	\begin{tabular}{cc} % l水平左居中，c水平居中
+		\toprule
+		肌肉或肌肉群 & 力, $F_i$牛  \\
+		\midrule
+		臀大肌 & 875  \\
+		\midrule
+		髂腰肌 & 0  \\
+		\midrule
+		腘绳肌 & 340  \\
+		\midrule
+		股直肌 & 0  \\
+		\midrule
+		股二头肌短头 & 0  \\
+		\midrule
+		股肌 & 4134  \\
+		\midrule
+		腓肠肌 & 1396  \\
+		\midrule
+		比目鱼肌 & 4167  \\
+		\midrule
+		胫骨前肌 & 0  \\
+		\bottomrule
+	\end{tabular}
+\end{table}
 
 
+通过在步态周期中均匀间隔的时刻重复此分析，我们可以估算出每块肌肉在行走和跑步过程中产生的力量。
+图~\ref{fig:9_10}~和图~\ref{fig:9_11}~显示了行走状态下的肌肉力量及其产生的关节力矩；
+图~\ref{fig:9_12}~和图~\ref{fig:9_13}~显示了跑步状态下的肌肉力量及其产生的关节力矩。
+正如预期的那样，计算出的跑步状态下的肌肉力量高于行走状态下的肌肉力量。
+还要注意的是，由于站立阶段较短，跑步状态下肌肉力量在步态周期中更早达到峰值，这也是我们预期的。
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=1.0\linewidth]{chap9/9_10}
+	\caption{使用 OpenSim 中的静态优化计算了一名受试者（男性，67.1 公斤）以自由选择的速度（1.67 米/秒）行走时的肌肉力量\cite{dembia2017simulating}。 \label{fig:9_10}}
+\end{figure}
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.8\linewidth]{chap9/9_11}
+	\caption{如图~\ref{fig:9_10}~所示，以 1.67 m/s 的速度行走时，肌肉力量产生的矢状面关节力矩。 \label{fig:9_11}}
+\end{figure}
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=1.0\linewidth]{chap9/9_12}
+	\caption{一名受试者（男性，69.4 公斤）以 5 米/秒的速度奔跑时的肌肉力量，使用 OpenSim 中的静态优化计算得出\cite{hamner2013muscle}。 \label{fig:9_12}}
+\end{figure}
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.8\linewidth]{chap9/9_13}
+	\caption{以 5 m/s 的速度跑步时肌肉力量产生的矢状面关节力矩如图~\ref{fig:9_12}~所示。 \label{fig:9_13}}
+\end{figure}
 
 
 
