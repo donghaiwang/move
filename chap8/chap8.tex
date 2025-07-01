@@ -284,6 +284,137 @@ Carlet 的博士论文首次报告了步行过程中地面反作用力特有的�
 	F_{x_1} = F_{x_g}
 	\label{eq:8_4c}
 \end{equation}
+%
+其中 $m_0$ 是足部的质量，$\ddot{x}_0$是其质心的水平加速度，我们假设两者都为 0。
+接下来，我们将 Y 方向上的力相加，计算出 $F_{y_1}$：
+%
+\begin{equation}
+	\sum F_y = m_0 \ddot{y}_0
+	\label{eq:8_5a}
+\end{equation}
+
+\begin{equation}
+	F y_g - F y_1 = 0
+	\label{eq:8_5b}
+\end{equation}
+
+\begin{equation}
+	F y_1 = F y_g
+	\label{eq:8_5c}
+\end{equation}
+
+最后，我们解出$T_1$。
+我们上面提到的旋转类似物 $\underline{F} = m \underline{a}$，在平面系统中计算物体上任意点$P$的矩时，具有以下一般形式：
+%
+\begin{equation}
+	\sum M_p = 
+		I \ddot{\theta} + 
+			( \underline{r}^P \times m \underline{a} ) \cdot \hat{z}
+	\label{eq:8_6}
+\end{equation}
+%
+其中，$\sum M_p$ 是关于点 $P$ 的力矩之和，$I$ 是物体绕其质心 (COM) 的转动惯量，$\ddot{\theta}$ 是物体的角加速度， 是从点 $\underline{r} ^P$ 到质心的矢量，$m$ 是物体的质量，$\underline{a}$ 是物体质心的线加速度。
+由于质量与加速度的乘积是力，我们可以将公式~\ref{eq:8_6}~右边的第二项解释为力矩在旋转轴上的投影（正如我们在公式~\ref{eq:6_4}~中看到的那样）。
+
+
+无论计算哪个点的矩，都会得到等效的方程组。
+为简单起见，我们通常计算重心的矩，使得公式~\ref{eq:8_6}~中的叉积为零（具体来说，使得 $\underline{r} ^P = \underline{0}$ ）。
+然而，我们假设足部无质量且静止。
+因此，公式~\ref{eq:8_6}~的右边始终为零，我们可以假设重心位于任意位置。
+为方便起见，我们将踝关节的矩相加：
+%
+\begin{equation}
+	\sum M_A = 0
+	\label{eq:8_7a}
+\end{equation}
+
+\begin{equation}
+	F x_g b - F y_g l - T_1 = 0
+	\label{eq:8_7b}
+\end{equation}
+
+\begin{equation}
+	T_1 = F x_g b - F y_g l
+	\label{eq:8_7c}
+\end{equation}
+
+方程~\ref{eq:8_4c}c、\ref{eq:8_5c}c~和~\ref{eq:8_7c}c~包含一个线性方程组，可用于在给定 $l$、$h$、$F_{x_g}$ 和 $F_{y_g}$ 的情况下计算 $F_{x_1}$ 、$F_{y_1}$ 和 $T_1$ 。
+
+
+现在，我们对小腿段（图~\ref{fig:8_6}）重复该过程，其中，假设施加于踝关节的力和力矩（$F_{x_1}$、$F_{y_1}$ 和 $T_1$）在上一步中已知，而施加于膝盖的力和力矩（$F_{x_2}$、$F_{y_2}$ 和 $T_2$）现在是未知数。
+我们首先根据踝关节的运动学特性（$\theta_1$、$\dot{\theta}_1$ 和 $\ddot{\theta}_1$）计算重心的加速度（$\ddot{x}_1$ 和 $\ddot{y}_1$），并注意踝关节中心是静止的：
+%
+\begin{equation}
+	x_1 = r_1 c \theta_1
+	\label{eq:8_8a}
+\end{equation}
+
+\begin{equation}
+	\dot{x}_1 = - r_1 s \theta_1 \dot{\theta}_1
+	\label{eq:8_8b}
+\end{equation}
+
+\begin{equation}
+	\ddot{x}_1 = - r_1 ( s \theta_1 \ddot{\theta}_1 + c \theta_1 \dot{\theta}_1^2 )
+	\label{eq:8_8c}
+\end{equation}
+
+\begin{equation}
+	y_1 = r_1 s \theta_1
+\end{equation}
+
+\begin{equation}
+	\dot{y}_1 = r_1 c \theta_1 \dot{\theta}_1
+	\label{eq:8_9b}
+\end{equation}
+
+\begin{equation}
+	\ddot{y}_1 = r_1 ( c \theta_1 \ddot{\theta_1}  -  s \theta_1 \dot{\theta}_1^2 )
+	\label{eq:8_9c}
+\end{equation}
+%
+其中，为了方便记号，我们使用了 $s \theta_1 \triangleq  sin (\theta_1)$ 和 $c \theta_1  \triangleq  cos (\theta_1)$。
+现在我们在 X 方向应用牛顿第二定律来计算 $F_{x_2}$：
+%
+\begin{equation}
+	\sum F_X = m_1 \ddot{x}_1
+	\label{eq:8_10a}
+\end{equation}
+
+\begin{equation}
+	F_{x_1} - F_{x_2} = 
+		- m_1 r_1 
+		(
+			s \theta_1 \ddot{\theta}_1 + 
+			c \theta_1 \dot{\theta}_1^2
+		)
+	\label{eq:8_10b}
+\end{equation}
+%
+并再次沿 Y 方向计算 $F_{y_2}$：
+\begin{equation}
+	F y_1 - F y_2 - m_1 g  =  
+		m_1 r_1
+		(
+			c \theta_1 \ddot{ \theta }_1 -
+			s \theta_1 \dot{ \theta }_1^2
+		)
+	\label{eq:8_11}
+\end{equation}
+
+最后，我们对 COM 的矩求和以获得 $T_2$ 的表达式：
+%
+\begin{equation}
+	\begin{aligned}
+		T_1 - T_2 & + F_{x_1} r_1 s \theta_1 - F y_1 r_1 c \theta_1 \\
+		%
+		& + F x_2 d_1 s \theta_1  -
+			F_{y_2} d_1 c \theta_1
+			= I_1 \ddot{\theta}_1
+	\end{aligned}
+	\label{eq:8_12}
+\end{equation}
+
 
 
 
