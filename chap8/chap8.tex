@@ -414,7 +414,53 @@ Carlet 的博士论文首次报告了步行过程中地面反作用力特有的�
 	\end{aligned}
 	\label{eq:8_12}
 \end{equation}
+%
+其中 $d_1 \triangleq l_1 r_1$。
+公式~\ref{eq:8_10b}b、\ref{eq:8_11}~和~\ref{eq:8_12}~构成了第二个包含三个未知数的线性方程组，现在我们可以求解施加在踝关节和膝盖上的净力和净力矩。
 
+
+对大腿段重复相同的步骤（图~\ref{fig:8_7}），其中未知数是施加于髋部的力和力矩（$F_{x_3}$、$F_{y_3}$ 和 $T_3$）。
+为了计算重心相对于地面的加速度（$\ddot{x}_2$和$\ddot{y}_2$），请注意髋部相对于踝部的位置是 $\theta_1$ 和 $\theta_2$ 的函数（参见图~\ref{fig:8_4}）：
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.85\linewidth]{chap8/8_7}
+	\caption{模型大腿段的自由体受力图如图~\ref{fig:8_4}~所示。 \label{fig:8_7}}
+\end{figure}
+
+\begin{equation}
+	x_2 = l_1 c \theta_1  +  r_2 c \theta_2
+	\label{eq:8_13a}
+\end{equation}
+
+
+\begin{equation}
+	\dot{x}_2 = 
+		- l_1 s \theta_1 \dot{\theta}_1
+		- r_2 s \theta_2  \dot{\theta}_2
+	\label{eq:8_13b}
+\end{equation}
+
+
+\begin{equation}
+	\ddot{x}_2 = 
+		- l_1 ( s \theta_1 \ddot{\theta}_1  +  c \theta_1 \dot{\theta}_1^2)
+		- r_2 ( s \theta_2 \ddot{\theta_2}  +  c \theta_2 \dot{\theta}_2^2 )
+	\label{eq:8_13c}
+\end{equation}
+
+
+\begin{equation}
+	y_2 = l_1 s \theta_1  +  r_2 s \theta_2
+	\label{eq:8_14a}
+\end{equation}
+
+
+\begin{equation}
+	\dot{y}_2  = l_1 c \theta_1  \dot{\theta}_1 
+	+ r_2 ( c  \theta_2  \ddot{\theta}_2  -  s \theta_2 \dot{\theta}_2^2)
+	\label{eq:8_14c}
+\end{equation}
 
 
 
