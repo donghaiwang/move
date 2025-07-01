@@ -20,6 +20,6 @@ jobs:
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: PFC.pdf
+          files: move.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

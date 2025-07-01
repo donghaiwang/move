@@ -1,5 +1,6 @@
 # 运动的生物力学
 
+最新版的中文版位于 [页面](https://github.com/OpenHUTB/move/releases) 中的 move.pdf。
 原书电子版 [链接](https://github.com/OpenHUTB/move/issues/1s) 。
 
 ## 贡献指南
