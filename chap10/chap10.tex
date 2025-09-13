@@ -3,7 +3,7 @@
 \markboth{肌肉驱动的运动}{肌肉驱动的运动}
 
 
-\chapter{肌肉驱动模拟} \label{chap:chap10}
+\chapter{肌肉驱动的模拟} \label{chap:chap10}
 
 
 预测非常困难，
@@ -74,9 +74,8 @@
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=1.0\linewidth]{chap10/10_1}
-	\caption{单肢站立时比目鱼肌的动作，忽略（左）动态效应，并考虑（右）动态效应。
-		比目鱼肌跖屈产生的踝关节跖屈力矩在两种情况下都会使踝关节跖屈，但当考虑地面反作用力时，由于动态耦合作用，该力矩还会影响其他关节和身体部位。
-		改编自 Anderson 等人 (2006)。 \label{fig:10_1}}
+	\caption{单肢站立时比目鱼肌的动作，忽略（左）动态效应和考虑（右）动态效应。
+		比目鱼肌跖屈产生的踝关节跖屈力矩在两种情况下都会使踝关节跖屈，但当考虑地面反作用力时，由于动态耦合作用，该力矩还会影响其他关节和身体部位\cite{anderson2006simulation}。 \label{fig:10_1}}
 \end{figure}
 
 
@@ -139,7 +138,11 @@
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.5\linewidth]{chap10/10_3}
-	\caption{创建和分析肌肉驱动模拟的过程包括（1）建模肌肉骨骼动力学，（2）模拟运动，（3）测试模拟的准确性，以及（4）分析模拟以回答特定的研究问题。 \label{fig:10_3}}
+	\caption{创建和分析肌肉驱动模拟的过程包括
+		（1）\textit{建模}肌肉骨骼动力学，
+		（2）\textit{模拟}运动，
+		（3）\textit{测试}模拟的准确性，以及
+		（4）\textit{分析}模拟以回答特定的研究问题。 \label{fig:10_3}}
 \end{figure}
 
 
@@ -340,9 +343,9 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=1.0\linewidth]{chap10/10_10}
+	\includegraphics[width=0.9\linewidth]{chap10/10_10}
 	\caption{立定跳远落地阶段的水平（上）和垂直（下）地面反作用力。
-		使用动态优化生成的模拟结果（蓝色）与相应的实验数据（橙色；95\% 置信区间，3 位受试者每人 6 次跳跃；Ashby 和 Heegaard，2002 年）进行了比较。改编自 Ong 等人（2016 年）。 \label{fig:10_10}}
+		使用动态优化生成的模拟结果（蓝色）与相应的实验数据（橙色；95\% 置信区间，3 位受试者每人 6 次跳跃；Ashby 和 Heegaard，2002 年）进行了比较\cite{ong2015simulation}。\label{fig:10_10}}
 \end{figure}
 
 
@@ -357,9 +360,8 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.8\linewidth]{chap10/10_11}
-	\caption{以 5 米/秒的速度跑步时，四块肌肉的模拟激活和肌电图记录。
-		测量的肌电图与模拟激活之间约 75 毫秒的延迟与肌电图和力量产生之间的机电延迟一致。
-		改编自 Hamner 和 Delp (2013)。 \label{fig:10_11}}
+	\caption{以 5 米/秒的速度跑步时，4 块肌肉的模拟激活和肌电图记录。
+		测量的肌电图与模拟激活之间约 75 毫秒的延迟与肌电图和力量产生之间的机电延迟一致\cite{hamner2013muscle}。。 \label{fig:10_11}}
 \end{figure}
 
 
@@ -442,32 +444,31 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 \section{用于创建肌肉驱动模拟的软件}
 
 20 世纪 90 年代初，我和 Peter Loan 推出了交互式肌肉骨骼建模软件 SIMM。
-该软件包允许用户创建、修改和分析多种肌肉骨骼结构的模型（Delp和Loan，1995）。
+该软件包允许用户创建、修改和分析多种肌肉骨骼结构的模型\cite{delp1995graphics}。
 在接下来的十年里，研究人员创建了数十种人类和动物模型。
 他们利用这些模型模拟行走、跑步、骑自行车、爬楼梯和病理步态，并研究手术重建的生物力学后果。
 SIMM 促进了运动控制原理的探索，以及对运动病理患者的治疗。
 我清楚地认识到，通过扩大用户群并允许用户更轻松地共享模型和模拟，我们可以加速研究。
 
 
-2007 年，我和同事启动了 OpenSim 项目，这是一个扩展了 SIMM 功能的开源软件平台 (Delp 等人，2007)。
+2007 年，我和同事启动了 OpenSim 项目，这是一个扩展了 SIMM 功能的开源软件平台\cite{delp2007opensim}。
 OpenSim 的功能涵盖 3 个方面。
 首先，用户可以构建、操作和查询生物力学模型（图~\ref{fig:10_14}）。
-例如，骨骼标本已被用来构建南方古猿阿法种的手部模型，以研究这种灵长类动物是否具有足够的握力来制作某些石器 (Domalain 等人，2017)。
-其次，OpenSim 可以实现一些实验难以完成的研究，例如研究如何利用肌腱弹性来提高跑步效率 (Uchida 等人，2016a)。
+例如，骨骼标本已被用来构建南方古猿阿法种的手部模型，以研究这种灵长类动物是否具有足够的握力来制作某些石器\cite{domalain2017australopithecus}。
+其次，OpenSim 可以实现一些实验难以完成的研究，例如研究如何利用肌腱弹性来提高跑步效率\cite{uchida2016stretching}。
 第三，利用神经肌肉控制和动态模拟的原理，无需进行任何实验，OpenSim 就可以预测新的动作及其对新条件的适应性。
-这种能力使我们对肌肉在预防踝关节损伤方面的作用有了更深入的了解（DeMers 等人，2017）。
+这种能力使我们对肌肉在预防踝关节损伤方面的作用有了更深入的了解\cite{demers2017preparatory}。
 
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{chap10/10_14}
 	\caption{OpenSim 可用于生成运动的正向动力学和逆向动力学模拟。
-		该软件允许用户建模各种生物和机械系统，包括神经控制器、肌肉肌腱执行器和辅助设备。
-		改编自 Seth、Hicks、Uchida 等人 (2018)。 \label{fig:10_14}}
+		该软件允许用户建模各种生物和机械系统，包括神经控制器、肌肉肌腱执行器和辅助设备\cite{seth2018opensim}。 \label{fig:10_14}}
 \end{figure}
 
 
-成千上万的生物力学家在 simtk.org 代码库上分享了 OpenSim 模型、模拟和计算工具。
+成千上万的生物力学家在 \href{http://simtk.org/}{simtk.org} 代码库上分享了 OpenSim 模型、模拟和计算工具。
 我们创建这个代码库的目的是帮助研究人员复现、验证和扩展他人的研究成果。
 我很高兴看到 OpenSim 社区不断发展壮大，日益多元化。
 从跑鞋到骨科手术，最伟大的洞见很可能源于各个领域专家的通力合作。
