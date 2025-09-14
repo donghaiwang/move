@@ -89,7 +89,7 @@
 
 在许多情况下，动态耦合产生的节段间力足够大，从而影响我们对肌肉动作的解读。
 虽然远离肌肉的关节处的“肌肉诱导”加速度通常较小，但在附近关节处却可能很大。
-例如，Felix Zajac 和 Michael Gordon (1989) 证明，在站立时，比目鱼肌使膝关节伸展的加速度甚至大于使踝关节跖屈的加速度。
+例如，已证明，在站立时，比目鱼肌使膝关节伸展的加速度甚至大于使踝关节跖屈的加速度\cite{zajac1989determining}。
 此外，他们还指出，双关节肌肉可以诱导与它穿过的其中一个关节产生的力矩相反的关节加速度。
 例如，虽然腓肠肌产生膝关节屈曲力矩和踝关节跖屈力矩，但它仍然可以诱导膝关节伸展加速度或踝关节背屈加速度（图~\ref{fig:10_2}）。
 这些看似不协调的加速度在腓肠肌激活时是可能的，因为例如，它产生的膝关节屈曲力矩引起的膝关节屈曲加速度可能会被它产生的踝关节跖屈力矩引起的膝关节伸展加速度所掩盖。
@@ -102,8 +102,7 @@
 	\centering
 	\includegraphics[width=0.75\linewidth]{chap10/10_2}
 	\caption{双关节肌肉可以诱导关节加速度，该加速度与其在与其交叉的某个关节上产生的力矩相反。
-		例如，从图中所示的初始位置（最左侧），腓肠肌产生的力可能会使膝关节和踝关节屈曲或伸展，如图所示，这是由于动态耦合作用。
-		改编自 Zajac (1993)。 \label{fig:10_2}}
+		例如，从图中所示的初始位置（最左侧），腓肠肌产生的力可能会使膝关节和踝关节屈曲或伸展，如图所示，这是由于动态耦合作用\cite{zajac1993muscle}。 \label{fig:10_2}}
 \end{figure}
 
 
@@ -210,8 +209,7 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 	\centering
 	\includegraphics[width=1.0\linewidth]{chap10/10_5}
 	\caption{用于生成肌肉驱动模拟的上肢和下肢平面肌肉骨骼模型。
-		此类简单模型可能足以研究平面肘部屈曲或步态过程中腿部摆动的动力学。
-		模型源自 Murray 等人 (1995)；Delp 等人 (1990)。 \label{fig:10_5}}
+		此类简单模型可能足以研究平面肘部屈曲或步态过程中腿部摆动的动力学\cite{murray1995variation,delp1990interactive}。\label{fig:10_5}}
 \end{figure}
 
 
@@ -219,8 +217,7 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 	\centering
 	\includegraphics[width=1.0\linewidth]{chap10/10_6}
 	\caption{详细的颈部和上肢肌肉骨骼模型，用于生成肌肉驱动的颈部损伤和伸手任务模拟。
-		这类相对复杂的模型可以提供有关单个肌肉活动、力量产生和能量学的详细信息。
-		模型源自 Vasavada 等人 (1998)、Cazzola 等人 (2017)、Saul 等人 (2015)。 \label{fig:10_6}}
+		这类相对复杂的模型可以提供有关单个肌肉活动、力量产生和能量学的详细信息\cite{vasavada1998influence,cazzola2017cervical,saul2015benchmarking}。 \label{fig:10_6}}
 \end{figure}
 
 
@@ -266,7 +263,7 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 两种优化策略可用于生成肌肉驱动的模拟。
 一种方法是求解最优跟踪问题，其中目标函数反映模拟量与测量量（例如关节角度、关节力量和地面反作用力）之间的差异。
 通过在模拟持续时间内最小化目标函数，模型将被驱动以重现实验观察到的运动。
-例如，Anne Silverman 和 Richard Neptune（2012）使用以下目标函数生成肌肉驱动的截肢步态模拟，以跟踪实验测量值：
+例如，使用以下目标函数生成肌肉驱动的截肢步态模拟，以跟踪实验测量值\cite{silverman2012muscle}：
 %
 \begin{equation}
 	J = \sum_{i} \sum_{j} \frac{(y_{ij} - \hat{y}_{ij})}{\sigma_i^2} \label{eq:10_2}
@@ -315,9 +312,8 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.8\linewidth]{chap10/10_8}
-	\caption{刚性肌腱近似法可以大幅缩短模拟肌腱相对较短的肌肉所需的时间（上图），但会引入肌肉-肌腱力的误差（下图），尤其是在肌腱长度相对于最佳纤维长度较长的情况下。
-		改编自 Millard 等人 (2013)。 \label{fig:10_8}}
+	\includegraphics[width=0.77\linewidth]{chap10/10_8}
+	\caption{刚性肌腱近似法可以大幅缩短模拟肌腱相对较短的肌肉所需的时间（上图），但会引入肌肉-肌腱力的误差（下图），尤其是在肌腱长度相对于最佳纤维长度较长的情况下\cite{millard2013flexing}。 \label{fig:10_8}}
 \end{figure}
 
 1990 年，我开发了一个膝盖模型，用简单的几何形状来表示复杂的生物接触面（图~\ref{fig:10_9}）。
@@ -345,7 +341,7 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 	\centering
 	\includegraphics[width=0.9\linewidth]{chap10/10_10}
 	\caption{立定跳远落地阶段的水平（上）和垂直（下）地面反作用力。
-		使用动态优化生成的模拟结果（蓝色）与相应的实验数据（橙色；95\% 置信区间，3 位受试者每人 6 次跳跃；Ashby 和 Heegaard，2002 年）进行了比较\cite{ong2015simulation}。\label{fig:10_10}}
+		使用动态优化生成的模拟结果（蓝色）与相应的实验数据（橙色；95\% 置信区间，3 位受试者每人 6 次跳跃\cite{ashby2002role}）进行了比较\cite{ong2015simulation}。\label{fig:10_10}}
 \end{figure}
 
 
@@ -377,7 +373,7 @@ $R(\underline{q})$是肌肉力臂矩阵， $\underline{F}^T (u)$是肌腱力的�
 	\includegraphics[width=0.8\linewidth]{chap10/10_12}
 	\caption{胫股关节接触力在模拟中估算（蓝色），并通过器械全膝关节置换术（TKR；橙色）测量。
 		4 次试验的平均值±1个标准差。
-		改编自Steele等人（2012）。 \label{fig:10_12}}
+		改编自 Steele 等人（2012）。 \label{fig:10_12}}
 \end{figure}
 
 
